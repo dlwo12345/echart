@@ -1,100 +1,120 @@
 import { Component, OnInit } from '@angular/core';
+import { graphic } from 'echarts';
 
 @Component({
   selector: 'app-line-chart',
-  template: `<div echarts [options]="options" class="demo-chart"></div>
-
-    <button (click)="changeOption()">값 변경</button>`,
+  template: `<div
+    echarts
+    [options]="options"
+    class="demo-chart"
+    (chartInit)="onChartEvent($event, 'chartInit')"
+    (chartClick)="onChartEvent($event, 'chartClick')"
+    (chartDblClick)="onChartEvent($event, 'chartDblClick')"
+    (chartMouseDown)="onChartEvent($event, 'chartMouseDown')"
+    (chartMouseUp)="onChartEvent($event, 'chartMouseUp')"
+    (chartMouseOver)="onChartEvent($event, 'chartMouseOver')"
+    (chartMouseOut)="onChartEvent($event, 'chartMouseOut')"
+    (chartGlobalOut)="onChartEvent($event, 'chartGlobalOut')"
+    (chartContextMenu)="onChartEvent($event, 'chartContextMenu')"
+    (chartDataZoom)="onChartEvent($event, 'chartDataZoom')"
+  ></div>`,
 })
 export class LineChartComponent implements OnInit {
   options: any;
+
   constructor() {}
 
   ngOnInit(): void {
-    this.options = this.getOption();
-  }
-
-  getOption() {
-    const xAxisData = [];
-    const data1 = [];
-    const data2 = [];
-
-    for (let i = 0; i < 100; i++) {
-      xAxisData.push('category' + i);
-      data1.push((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5);
-      data2.push((Math.cos(i / 5) * (i / 5 - 10) + i / 6) * 5);
-    }
-
-    return {
-      tooltip: {},
-      xAxis: {
-        data: xAxisData,
-        silent: false,
-        splitLine: {
-          show: false,
-        },
-      },
-      yAxis: {},
-      series: [
-        {
-          name: 'bar',
-          type: 'bar',
-          data: data1,
-          animationDelay: (idx) => idx * 10,
-        },
-        {
-          name: 'bar2',
-          type: 'bar',
-          data: data2,
-          animationDelay: (idx) => idx * 10 + 100,
-        },
-      ],
-      animationEasing: 'elasticOut',
-      animationDelayUpdate: (idx) => idx * 5,
-    };
-  }
-
-  changeOption() {
-    const xAxisData = [];
-    const data1 = [];
-    const data2 = [];
-
-    for (let i = 0; i < 100; i++) {
-      xAxisData.push('category' + i);
-      data1.push(Math.floor(Math.random() * 10));
-      data2.push(Math.floor(Math.random() * 10));
-    }
+    const dataAxis = [
+      { value: '10%' },
+      { value: '20%' },
+      { value: '30%' },
+      { value: '40%' },
+      { value: '50%' },
+      { value: '60%' },
+      { value: '70%' },
+      { value: '80%' },
+      { value: '90%' },
+      { value: '100%' },
+    ].map((res: any) => {
+      res.textStyle = { color: '#aaa' };
+      return res;
+    });
+    const data = [
+      { value: 50 },
+      { value: 45 },
+      { value: 40 },
+      { value: 35 },
+      { value: 30 },
+      { value: 25 },
+      { value: 20 },
+      { value: 15 },
+      { value: 10 },
+      { value: 5 },
+    ].map((res: any) => {
+      if (res.value === 10) {
+        const meStyle = {
+          normal: {
+            color: new graphic.LinearGradient(0, 0, 0, 1, [
+              { offset: 0, color: '#0b74e2' },
+              { offset: 0.5, color: '#33a0ff' },
+            ]),
+          },
+        };
+        res.itemStyle = meStyle;
+      }
+      return res;
+    });
 
     this.options = {
-      legend: {
-        data: ['bar', 'bar2'],
-        align: 'left',
-      },
-      tooltip: {},
+      // title: {
+      //   text: 'Check Console for Events',
+      // },
       xAxis: {
-        data: xAxisData,
-        silent: false,
+        data: dataAxis,
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          show: false,
+        },
+        z: 10,
+      },
+      yAxis: {
         splitLine: {
           show: false,
         },
-      },
-      yAxis: {},
-      series: [
-        {
-          name: 'bar',
-          type: 'bar',
-          data: data1,
-          animationDelay: (idx) => idx * 10,
+        axisLine: {
+          show: false,
         },
+        axisTick: {
+          show: false,
+        },
+        axisLabel: {
+          show: false,
+          textStyle: {
+            color: '#999',
+          },
+        },
+      },
+      dataZoom: [
         {
-          name: 'bar2',
-          type: 'bar',
-          data: data2,
-          animationDelay: (idx) => idx * 10 + 100,
+          type: 'inside',
         },
       ],
-      animationEasing: 'elasticOut',
-      animationDelayUpdate: (idx) => idx * 5,
+      series: [
+        {
+          type: 'bar',
+          itemStyle: {
+            color: '#888',
+          },
+          data,
+        },
+      ],
     };
+  }
+
+  onChartEvent(event: any, type: string) {
+    console.log('chart event:', type, event);
   }
 }
