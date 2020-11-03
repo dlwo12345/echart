@@ -1,27 +1,28 @@
-# Echart
+# echart 프로토타이핑
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
+- 실무 적용 전 프로토타이핑을 위한 프로젝트
 
-## Development server
+## 개발언어
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Angular v10 기반으로 개발되었으며 기본 프로젝트는 angular-cli를 이용.
+- [Angular CLI](https://github.com/angular/angular-cli) version 10
 
-## Code scaffolding
+## 추가 패키지
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- echarts
+  > npm i -S echarts
 
-## Build
+- ngx-echarts
+  > npm i -S ngx-echarts
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## port
 
-## Running unit tests
+4400(default)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## start
 
-## Running end-to-end tests
+- npm run start
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## build
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- npm run build
