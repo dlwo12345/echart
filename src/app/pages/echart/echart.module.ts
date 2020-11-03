@@ -3,7 +3,27 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EchartComponent } from './echart.component';
 
-const routes: Routes = [{ path: '', component: EchartComponent }];
+const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'line-chart' },
+  {
+    path: '',
+    component: EchartComponent,
+    children: [
+      {
+        path: 'sample',
+        loadChildren: () =>
+          import('./sample/sample.module').then((m) => m.SampleModule),
+      },
+      {
+        path: 'line-chart',
+        loadChildren: () =>
+          import('./line-chart/line-chart.module').then(
+            (m) => m.LineChartModule
+          ),
+      },
+    ],
+  },
+];
 
 @NgModule({
   imports: [SharedModule, RouterModule.forChild(routes)],
