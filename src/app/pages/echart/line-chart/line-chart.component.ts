@@ -17,7 +17,7 @@ import { graphic } from 'echarts';
     (chartGlobalOut)="onChartEvent($event, 'chartGlobalOut')"
     (chartContextMenu)="onChartEvent($event, 'chartContextMenu')"
     (chartDataZoom)="onChartEvent($event, 'chartDataZoom')"
-  ></div>`,
+  ></div> `,
 })
 export class LineChartComponent implements OnInit {
   options: any;
@@ -37,7 +37,7 @@ export class LineChartComponent implements OnInit {
       { value: '90%' },
       { value: '100%' },
     ].map((res: any) => {
-      res.textStyle = { color: '#aaa' };
+      res.textStyle = { color: '#888' };
       return res;
     });
     const data = [
@@ -72,11 +72,17 @@ export class LineChartComponent implements OnInit {
       // },
       xAxis: {
         data: dataAxis,
+        name: '상위',
+        nameLocation: 'start',
+        nameTextStyle: {
+          padding: [65, -40, 0, 0],
+        },
+        axisLabel: { interval: 0 },
         axisTick: {
           show: false,
         },
         axisLine: {
-          show: false,
+          show: true,
         },
         z: 10,
       },
@@ -93,7 +99,7 @@ export class LineChartComponent implements OnInit {
         axisLabel: {
           show: false,
           textStyle: {
-            color: '#999',
+            // color: '#999',
           },
         },
       },
@@ -106,9 +112,10 @@ export class LineChartComponent implements OnInit {
         {
           type: 'bar',
           itemStyle: {
-            color: '#888',
+            color: '#9fafbf',
           },
           data,
+          name: 'aaa',
         },
       ],
     };
