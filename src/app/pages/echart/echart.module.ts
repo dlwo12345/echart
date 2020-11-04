@@ -21,6 +21,13 @@ const routes: Routes = [
             (m) => m.LineChartModule
           ),
       },
+      {
+        path: 'pie-chart',
+        loadChildren: () =>
+          import('./pie-chart/pie-chart.module').then(
+            (m) => m.PieChartModule
+          ),
+      },
     ],
   },
 ];
