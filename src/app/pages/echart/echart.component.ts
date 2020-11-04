@@ -26,6 +26,9 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
         <button routerLink="line-chart">line-chart</button>
       </li>
       <li>
+        <button routerLink="linebar-chart">linebar-chart</button>
+      </li>
+      <li>
         <button routerLink="pie-chart">pie-chart</button>
       </li>
     </ul>

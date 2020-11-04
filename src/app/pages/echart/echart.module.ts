@@ -22,6 +22,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'linebar-chart',
+        loadChildren: () =>
+          import('./linebar-chart/linebar-chart.module').then(
+            (m) => m.LineBarChartModule
+          ),
+      },
+      {
         path: 'pie-chart',
         loadChildren: () =>
           import('./pie-chart/pie-chart.module').then(
