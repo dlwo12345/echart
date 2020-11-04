@@ -31,6 +31,9 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
       <li>
         <button routerLink="pie-chart">pie-chart</button>
       </li>
+      <li>
+        <button routerLink="gauge-chart">gauge-chart</button>
+      </li>
     </ul>
     <router-outlet></router-outlet>
   `,

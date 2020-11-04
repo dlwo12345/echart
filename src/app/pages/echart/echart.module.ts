@@ -31,8 +31,13 @@ const routes: Routes = [
       {
         path: 'pie-chart',
         loadChildren: () =>
-          import('./pie-chart/pie-chart.module').then(
-            (m) => m.PieChartModule
+          import('./pie-chart/pie-chart.module').then((m) => m.PieChartModule),
+      },
+      {
+        path: 'gauge-chart',
+        loadChildren: () =>
+          import('./gauge-chart/gauge-chart.module').then(
+            (m) => m.GaugeChartModule
           ),
       },
     ],
