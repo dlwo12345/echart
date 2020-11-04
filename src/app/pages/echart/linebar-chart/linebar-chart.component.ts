@@ -43,6 +43,10 @@ export class LineBarChartComponent implements OnInit {
       },
       legend: {
         data: ['kwh', '발전시간'],
+        textStyle: {
+          color: 'rgba(255,255,255,0.5)',
+          fontSize: 10
+        },
       },
       xAxis: [
         {
@@ -155,6 +159,8 @@ export class LineBarChartComponent implements OnInit {
           type: 'line',
           yAxisIndex: 1,
           showSymbol: false,
+          symbolSize: 0,
+          itemStyle: { color: '#fff' },
           lineStyle: { color: '#fff' },
           data: [2.1, 3.22, 4.53],
         },
