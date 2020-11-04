@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { graphic } from 'echarts';
-import { start } from 'repl';
 
 @Component({
   selector: 'app-gauge-chart',
