@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { graphic } from 'echarts';
+import { start } from 'repl';
 
 @Component({
   selector: 'app-gauge-chart',
@@ -67,21 +68,41 @@ export class GaugeChartComponent implements OnInit {
         },
       ],
     };
-    setTimeout(() => {
-      this.startAnimation();
-    }, 100);
+    setInterval(() => {
+      const value = (Math.random() * 100).toFixed(2);
+      this.startAnimation((Math.random() * 100).toFixed(2));
+    }, 1000);
   }
 
-  startAnimation(i = 0) {
+  startAnimation(endValue) {
+    const startValue = this.options.series[0].data[0].value;
+    const mode = startValue !== 0 && startValue >= endValue ? '-' : '+';
+    this.loopAnimation(startValue, endValue, mode);
+  }
+
+  loopAnimation(i, value, mode) {
     const newOption = { ...this.options };
 
-    if (i <= 100) {
-      newOption.series[0].axisLine.lineStyle.color[0][0] = i / 100;
-      newOption.series[0].data[0].value = i;
-      setTimeout(() => {
-        this.options = newOption;
-        this.startAnimation(i + 1);
-      }, 5);
+    if (mode === '+') {
+      if (i <= value) {
+        newOption.series[0].axisLine.lineStyle.color[0][0] = i / 100;
+        newOption.series[0].data[0].value = i;
+        setTimeout(() => {
+          this.options = newOption;
+          this.loopAnimation(i + 1, value, mode);
+        }, 5);
+      }
+    }
+
+    if (mode === '-') {
+      if (i >= value) {
+        newOption.series[0].axisLine.lineStyle.color[0][0] = i / 100;
+        newOption.series[0].data[0].value = i;
+        setTimeout(() => {
+          this.options = newOption;
+          this.loopAnimation(i - 1, value, mode);
+        }, 5);
+      }
     }
 
     return;
