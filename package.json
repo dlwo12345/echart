@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve --public-host 0.0.0.0:4400 --host 0.0.0.0 --port 4400 --disableHostCheck",
     "build": "ng build --prod",
+    "predeploy": "ng build --prod --base-href 'https://dlwo12345.github.io/echart/'",
+    "deploy": "ngh --dir dist/echart/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -25,14 +27,16 @@
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
+  "homepage": "https://dlwo12345.github.io/echart",
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1002.0",
     "@angular/cli": "~10.2.0",
     "@angular/compiler-cli": "~10.2.0",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "gh-pages": "^3.1.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.0.0",
