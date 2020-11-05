@@ -15,6 +15,10 @@
 - ngx-echarts
   > npm i -S ngx-echarts
 
+## demo 
+
+https://dlwo12345.github.io/echart
+
 ## port
 
 4400(default)
@@ -26,3 +30,7 @@
 ## build
 
 - npm run build
+
+## deploy
+
+- npm run deploy
