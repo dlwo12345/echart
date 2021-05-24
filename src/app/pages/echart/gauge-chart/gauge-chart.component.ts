@@ -62,7 +62,12 @@ export class GaugeChartComponent implements OnInit {
               ],
             },
           },
-          pointer: { length: '30%', width: 3 },
+          pointer: {
+            length: '30%',
+            width: 3,
+            icon:
+              'circle',
+          },
           animation: false,
         },
       ],
